@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<div id="box"></div>
+
+<script>
+    var now="2017-09-18 17:09:18" ;
+
+    function getDaysN(date,n) {
+        var date = date || new Date(),
+            timestamp, newDate;
+        if (!(date instanceof Date)) {
+            date = new Date(date.replace(/-/g, '-'));
+        }
+        timestamp = date.getTime();
+        newDate = new Date(timestamp+ n * 24 * 3600 * 1000);
+        var m = newDate.getMonth() + 1;
+        m = m < 10 ? '0' + m : m;
+        var d = newDate.getDate();
+        d = d < 10 ? '0' + d : d;
+        var hour=newDate.getHours();
+        hour = hour < 10 ? '0' + hour : hour;
+        var minutes=newDate.getMinutes();
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        var seconds=newDate.getSeconds();
+        seconds=seconds<10? '0' + seconds : seconds;
+        //return [newDate.getFullYear(), m, d].join('-');
+        return newDate.getFullYear() + '-' + m + '-' + d +' '+hour+':'+minutes+':'+seconds;
+    }
+    var deatTime=getDaysN(now,5);
+    var oBox=document.getElementById("box");
+    oBox.innerHTML=deatTime;
+    console.log(deatTime)
+    /*function getNewDay(dateTemp, days) {
+        var dateTemp = dateTemp.split("-");
+        var nDate = new Date(dateTemp[1] + '-' + dateTemp[2] + '-' + dateTemp[0]); //转换为MM-DD-YYYY格式
+        var millSeconds = Math.abs(nDate) + (days * 24 * 60 * 60 * 1000);
+        var rDate = new Date(millSeconds);
+        var year = rDate.getFullYear();
+        var month = rDate.getMonth() + 1;
+        if (month < 10) month = "0" + month;
+        var date = rDate.getDate();
+        if (date < 10) date = "0" + date;
+        return (year + "-" + month + "-" + date);
+    }*/
+</script>
+</body>
+</html>
